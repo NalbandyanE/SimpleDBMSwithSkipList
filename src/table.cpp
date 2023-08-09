@@ -7,13 +7,6 @@
 
 Table::Table(const std::string& n) : name{n} {}
 
-// Table::Table(const std::string& n, const std::vector<std::string>& c, int o) 
-//     : name{n},
-//     columns{c},
-//     order{o}
-// {
-// } 
-
 void Table::insertRow(const Row& row) {
     rows.push_back(row);
     std::string filename = "data/" + generateFileName(rows.size() - 1);
@@ -182,14 +175,6 @@ bool Table::meetCondition(const Row& row, const std::string& condition) {
     std::string row_value = row.getFieldValue(field_name);
     return row_value == value;
 }
-
-// bool Table::hasIndexOn(const std::string& columnName) const {
-//     return indexes.find(columnName) != indexes.end();
-// }
-
-// Index& Table::getIndex(const std::string& columnName) {
-//     return *indexes[columnName];
-// }
 
 void Table::createIndex(const std::string& columnName, int maxLevels) {
     indexes[columnName] = std::make_shared<SkipList>(maxLevels);
