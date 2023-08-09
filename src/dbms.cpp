@@ -28,10 +28,10 @@ void DBMS::addTable(const Table& t) {
 }
 
 const Table* DBMS::getTable(const std::string& t) const {
-    for (int i = 0; i < tables.size(); ++i) {
-        if (tables[i].getName() == t) {
-            return &tables[i];
-        }
-    }
-    return nullptr; 
+    	for (int i = 0; i < tables.size(); ++i) {
+        	if (tables[i].getName() == t) {
+            		return &tables[i];
+        	}
+    	}
+    	return nullptr; 
 }
