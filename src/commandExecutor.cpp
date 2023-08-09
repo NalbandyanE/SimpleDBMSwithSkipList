@@ -50,12 +50,6 @@ void CommandExecutor::execute(const Command& com) {
 	    for (size_t i = 0; i < field_names.size(); ++i) {
 	        Field field(field_names[i], field_values[i]);
 	        new_row.addField(field);
-            // if (!table.hasIndexOn(field_names[i])) {
-            //     table.createIndex(field_names[i], 3);
-            // }
-
-            // Index& index = table.getIndex(field_names[i]);
-            // index.insert(field_values[i], new_row);
 	    }
 	    table.insertRow(new_row);
 	    std::cout << "Row inserted" << std::endl;
@@ -83,21 +77,6 @@ void CommandExecutor::execute(const Command& com) {
             }
             std::cout << std::endl;
         }
-        //     if (table.hasIndexOn(field_name)) {
-        //         Index& index = table.getIndex(field_name);
-        //         std::vector<Row> search_result = index.search(row.getFieldValue(field_name));
-        //         if (!search_result.empty()) {
-        //             std::cout << "Search result using index:" << std::endl;
-        //             for (const Row& row1 : search_result) {
-        //                 std::cout << row1.getFieldValue(field_name) << " ";
-        //                 std::cout << std::endl;
-        //             }
-        //         } else {
-        //             std::cout << "No matching rows found using index." << std::endl;
-        //         }
-        //         return;
-        //     }
-        // }
         else if (field_names[0] == "*") {
             table.show();
         }
