@@ -7,12 +7,12 @@ SkipList::SkipList(int m) : maxLevels{m}
 
 SkipList::~SkipList() {
 	Node* current = head->next[0];
-    while (current != nullptr) {
-        Node* temp = current->next[0];
-        delete current;
-        current = temp;
-    }
-    delete head;
+    	while (current != nullptr) {
+        	Node* temp = current->next[0];
+        	delete current;
+        	current = temp;
+    	}
+    	delete head;
 }
 
 void SkipList::insert(const std::string& val) {
@@ -35,24 +35,24 @@ void SkipList::insert(const std::string& val) {
 
 void SkipList::remove(const std::string& val) {
 	std::cout << "Removing: " << val << std::endl;
-    if (!search(val)) {
-        std::cout << "Value not found, nothing to remove." << std::endl;
-        return;
-    }
-    Node* current = head;
-    for (int i = maxLevels - 1; i >= 0; --i) {
-        while (current->next[i] != nullptr && current->next[i]->value < val) {
-            current = current->next[i];
-        }
-        if (current->next[i] != nullptr && current->next[i]->value == val) {
-            Node* toDelete = current->next[i];
-            current->next[i] = toDelete->next[i];
-            auto it = std::find(toDelete->next.begin(), toDelete->next.end(), toDelete);
-            if (it != toDelete->next.end()) {
-                toDelete->next.erase(it);
-            }
-        }
-    }
+    	if (!search(val)) {
+       		std::cout << "Value not found, nothing to remove." << std::endl;
+        	return;
+    	}
+    	Node* current = head;
+    	for (int i = maxLevels - 1; i >= 0; --i) {
+        	while (current->next[i] != nullptr && current->next[i]->value < val) {
+           		current = current->next[i];
+        	}
+        	if (current->next[i] != nullptr && current->next[i]->value == val) {
+            		Node* toDelete = current->next[i];
+            		current->next[i] = toDelete->next[i];
+            		auto it = std::find(toDelete->next.begin(), toDelete->next.end(), toDelete);
+            		if (it != toDelete->next.end()) {
+                		toDelete->next.erase(it);
+            		}
+        	}
+    	}
 }
 
 bool SkipList::search(const std::string& val) {
@@ -69,13 +69,13 @@ bool SkipList::search(const std::string& val) {
 }
 
 void SkipList::printList() {
-    for (int i = maxLevels - 1; i >= 0; --i) {
-        Node* current = head;
-        std::cout << "Level " << i << ": ";
-        while (current->next[i] != nullptr) {
-            std::cout << current->next[i]->value << " ";
-            current = current->next[i];
-        }
-        std::cout << std::endl;
-    }
+    	for (int i = maxLevels - 1; i >= 0; --i) {
+        	Node* current = head;
+        	std::cout << "Level " << i << ": ";
+        	while (current->next[i] != nullptr) {
+            		std::cout << current->next[i]->value << " ";
+	            	current = current->next[i];
+        	}
+        	std::cout << std::endl;
+    	}
 }
